@@ -9,16 +9,75 @@
 /* Set a clean font for the entire page */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333; /* Dark gray text for good readability */
+  color: #222; /* Darker gray text for better accessibility (WCAG AA contrast) */
   line-height: 1.6; /* Spacing between lines makes text easier to read */
   background-color: #f5f5f5; /* Light gray background */
+  transition: direction 0.3s ease; /* Smooth transition when switching RTL/LTR */
+}
+
+/* RTL Layout Support */
+body.rtl-layout {
+  direction: rtl;
+  text-align: right;
+}
+
+body.rtl-layout .text-center {
+  text-align: center; /* Keep centered text centered in RTL */
+}
+
+body.rtl-layout .text-start {
+  text-align: right;
+}
+
+body.rtl-layout .text-end {
+  text-align: left;
+}
+
+body.rtl-layout .me-3 {
+  margin-right: auto;
+  margin-left: 0.75rem; /* Right margin becomes left margin in RTL */
+}
+
+body.rtl-layout .ms-3 {
+  margin-left: auto;
+  margin-right: 0.75rem;
+}
+
+/* Navigation Bar Styling */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  transition: color 0.3s ease;
+}
+
+.rtl-layout .navbar-brand {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.btn-outline-primary {
+  color: #0071C5;
+  border-color: #0071C5;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0071C5;
+  color: white;
+}
+
+.btn-outline-primary:focus {
+  outline: 2px solid #0071C5;
+  outline-offset: 2px;
 }
 
 
 /* ===== HERO SECTION STYLES ===== */
 /* The hero section is the large banner at the top */
 .hero {
-  background: #0071C5; /* Solid Intel blue for modern flat look */
+  background: linear-gradient(135deg, #0071C5 0%, #004494 100%); /* Gradient for modern look */
   color: white; /* White text contrasts nicely with blue background */
   text-align: center; /* Center all text */
   padding: 80px 20px; /* Space inside the hero section (top/bottom, left/right) */
@@ -61,6 +120,84 @@ body {
 }
 
 
+/* ===== THREE-COLUMN FEATURES SECTION ===== */
+.features-section {
+  background-color: #ffffff;
+  padding: 60px 20px;
+}
+
+.features-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 50px;
+  letter-spacing: -0.5px;
+}
+
+/* Individual feature card */
+.feature-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 30px 20px;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 113, 197, 0.15);
+  border-color: #0071C5;
+}
+
+/* Feature icon styling */
+.feature-icon {
+  font-size: 3rem;
+  color: #0071C5;
+  margin-bottom: 15px;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.feature-description {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* "Learn More" button styling */
+.btn-learn-more {
+  background-color: #0071C5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: center;
+}
+
+.btn-learn-more:hover {
+  background-color: #004494;
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn-learn-more:focus {
+  outline: 2px solid #0071C5;
+  outline-offset: 2px;
+}
+
+
 /* ===== TIMELINE SECTION ===== */
 /* This is the container for all timeline cards */
 .timeline {
@@ -75,6 +212,10 @@ body {
   scroll-snap-type: x mandatory; /* Snaps horizontally */
   scroll-padding: 40px; /* Padding when snapping to cards */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+}
+
+.rtl-layout .timeline {
+  direction: rtl; /* Reverse card order in RTL */
 }
 
 /* Custom scrollbar styling */
@@ -93,11 +234,9 @@ body {
 }
 
 .timeline::-webkit-scrollbar-thumb:hover {
-  background: #0054A6; /* Darker blue on hover */
+  background: #004494; /* Darker blue on hover */
 }
 
-
-/* ===== TIMELINE CARD STYLES ===== */
 /* Individual milestone cards */
 .timeline-card {
   flex: 0 0 350px; /* Cards are 350px wide and don't shrink or grow */
@@ -110,7 +249,6 @@ body {
   scroll-snap-align: start; /* Each card snaps when scrolling */
 }
 
-/* LEVELUP: CSS Transforms (5 pts) */
 /* When you hover over a card, it lifts up and casts a bigger shadow */
 .timeline-card:hover {
   transform: translateY(-8px) scale(1.02); /* Moves card up and slightly enlarges */
@@ -140,6 +278,13 @@ body {
   border-left: 3px solid white; /* Modern accent line */
 }
 
+.rtl-layout .card-year {
+  right: auto;
+  left: 10px;
+  border-left: none;
+  border-right: 3px solid white;
+}
+
 /* Milestone title (e.g., "Intel Founded") */
 .card-title {
   font-size: 1.5rem;
@@ -162,7 +307,7 @@ body {
 /* Card description text */
 .card-description {
   padding: 10px 20px 20px; /* Padding around the text */
-  color: #666; /* Medium gray for body text */
+  color: #555; /* Medium gray for body text - improved contrast */
   font-size: 0.95rem;
   line-height: 1.6;
   max-height: 0; /* Start collapsed */
@@ -181,7 +326,7 @@ body {
 /* The scroll instruction message */
 .timeline-hint {
   text-align: center;
-  color: #666; /* Subtle gray */
+  color: #555; /* Darker gray for better contrast */
   background: #ffffff; /* White background */
   padding: 15px 20px; /* Smaller padding */
   font-size: 0.9rem; /* Smaller text */
@@ -199,7 +344,191 @@ body {
 }
 
 
-/* ===== RESPONSIVE DESIGN: MOBILE ===== */
+/* ===== SUBSCRIPTION FORM SECTION ===== */
+.subscription-section {
+  background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+  padding: 80px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.subscription-section h2 {
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.subscription-section .form-label {
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.subscription-section .form-control {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #222;
+  transition: border-color 0.3s ease;
+}
+
+.subscription-section .form-control:focus {
+  border-color: #0071C5;
+  box-shadow: 0 0 0 3px rgba(0, 113, 197, 0.1);
+  outline: none;
+}
+
+.subscription-section .btn-primary {
+  background-color: #0071C5;
+  border-color: #0071C5;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.subscription-section .btn-primary:hover {
+  background-color: #004494;
+  border-color: #004494;
+}
+
+.subscription-section .btn-primary:focus {
+  outline: 2px solid #0071C5;
+  outline-offset: 2px;
+}
+
+.text-danger {
+  color: #d32f2f;
+}
+
+.form-text {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+
+/* ===== FOOTER SECTION ===== */
+.footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 60px 20px 20px;
+  border-top: 1px solid #333;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer-text {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-link {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: #0071C5;
+}
+
+.footer-link:focus {
+  outline: 2px solid #0071C5;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.list-unstyled li {
+  margin-bottom: 10px;
+}
+
+.social-links {
+  font-size: 1.5rem;
+}
+
+.footer-copyright {
+  color: #999;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.border-secondary {
+  border-color: #444 !important;
+}
+
+
+/* ===== ACCORDION COMPONENT STYLING ===== */
+/* Interactive accordion for FAQ section */
+.accordion-section {
+  background-color: #ffffff;
+  padding: 80px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.accordion-section h2 {
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 50px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.accordion-button {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  color: #222;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #0071C5;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(0, 113, 197, 0.1);
+}
+
+.accordion-button:hover {
+  background-color: #0071C5;
+  color: white;
+}
+
+.accordion-button:focus {
+  outline: 2px solid #0071C5;
+  outline-offset: 2px;
+  border-color: #0071C5;
+}
+
+.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-body {
+  background-color: #ffffff;
+  color: #555;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.rtl-layout .accordion-button::after {
+  transform: rotate(180deg);
+}
+
+
 /* When screen is 768px or smaller, adjust for mobile */
 @media (max-width: 768px) {
   /* Reduce hero section padding on mobile */
@@ -223,7 +552,12 @@ body {
   .hero-subtitle {
     font-size: 1rem;
   }
-  
+
+  /* Features section mobile adjustments */
+  .features-section h2 {
+    font-size: 1.75rem;
+  }
+
   /* VERTICAL timeline for mobile */
   .timeline {
     flex-direction: column; /* Stack cards vertically */
@@ -256,6 +590,11 @@ body {
     font-size: 0.9rem;
     padding: 6px 12px;
   }
+
+  .rtl-layout .card-year {
+    right: auto;
+    left: 10px;
+  }
   
   .card-title {
     font-size: 1.25rem;
@@ -274,6 +613,15 @@ body {
   
   .mobile-hint {
     display: inline;
+  }
+
+  /* Footer mobile adjustments */
+  .footer {
+    text-align: center;
+  }
+
+  .footer-link {
+    margin: 0 8px;
   }
 }
 
