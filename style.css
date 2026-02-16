@@ -1,0 +1,291 @@
+/* ===== RESET & BASE STYLES ===== */
+/* This removes default browser spacing so we start with a clean slate */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Makes width/height calculations easier */
+}
+
+/* Set a clean font for the entire page */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333; /* Dark gray text for good readability */
+  line-height: 1.6; /* Spacing between lines makes text easier to read */
+  background-color: #f5f5f5; /* Light gray background */
+}
+
+
+/* ===== HERO SECTION STYLES ===== */
+/* The hero section is the large banner at the top */
+.hero {
+  background: #0071C5; /* Solid Intel blue for modern flat look */
+  color: white; /* White text contrasts nicely with blue background */
+  text-align: center; /* Center all text */
+  padding: 80px 20px; /* Space inside the hero section (top/bottom, left/right) */
+  min-height: 400px; /* Ensure the hero takes up enough vertical space */
+  display: flex; /* Flexbox helps us center content */
+  align-items: center; /* Centers content vertically */
+  justify-content: center; /* Centers content horizontally */
+}
+
+/* Container for hero content */
+.hero-content {
+  max-width: 800px; /* Prevents text from stretching too wide */
+  width: 100%; /* Takes full width up to the max-width */
+}
+
+/* Intel logo styling */
+.hero-logo {
+  width: 150px; /* Set logo width */
+  height: auto; /* Keeps the logo's proportions correct */
+  margin-bottom: 30px; /* Space below the logo */
+  filter: brightness(0) invert(1); /* Makes the logo white */
+}
+
+/* Main headline */
+.hero-title {
+  font-size: 3rem; /* Large text (3 times the base size) */
+  font-weight: 700; /* Strong weight for modern look */
+  margin-bottom: 20px; /* Space below the heading */
+  letter-spacing: -0.5px; /* Tight letter spacing like Intel branding */
+  text-transform: uppercase; /* All caps for bold statement */
+}
+
+/* Subheading text */
+.hero-subtitle {
+  font-size: 1.2rem; /* Slightly larger than normal text */
+  line-height: 1.8; /* Extra space between lines */
+  max-width: 600px; /* Keeps the paragraph from getting too wide */
+  margin: 0 auto; /* Centers the paragraph */
+  opacity: 0.95; /* Slightly transparent for a softer look */
+}
+
+
+/* ===== TIMELINE SECTION ===== */
+/* This is the container for all timeline cards */
+.timeline {
+  display: flex; /* Arrange cards in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical scrolling */
+  gap: 60px; /* Space between each card */
+  padding: 60px 40px; /* Space around the timeline */
+  background-color: #ffffff; /* White background for timeline area */
+  
+  /* Scroll snap for smooth navigation */
+  scroll-snap-type: x mandatory; /* Snaps horizontally */
+  scroll-padding: 40px; /* Padding when snapping to cards */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+}
+
+/* Custom scrollbar styling */
+.timeline::-webkit-scrollbar {
+  height: 8px; /* Height of horizontal scrollbar */
+}
+
+.timeline::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray track */
+  border-radius: 0; /* No rounding for modern look */
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: #0071C5; /* Intel blue scrollbar */
+  border-radius: 0; /* Sharp edges */
+}
+
+.timeline::-webkit-scrollbar-thumb:hover {
+  background: #0054A6; /* Darker blue on hover */
+}
+
+
+/* ===== TIMELINE CARD STYLES ===== */
+/* Individual milestone cards */
+.timeline-card {
+  flex: 0 0 350px; /* Cards are 350px wide and don't shrink or grow */
+  background: white; /* White background for cards */
+  border-radius: 2px; /* Minimal rounding for sharp, modern look */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Crisp, minimal shadow */
+  overflow: hidden; /* Keeps content from spilling out of corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+  border: 1px solid #e0e0e0; /* Subtle border for definition */
+  scroll-snap-align: start; /* Each card snaps when scrolling */
+}
+
+/* LEVELUP: CSS Transforms (5 pts) */
+/* When you hover over a card, it lifts up and casts a bigger shadow */
+.timeline-card:hover {
+  transform: translateY(-8px) scale(1.02); /* Moves card up and slightly enlarges */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* Clean, modern shadow */
+  border-color: #0071C5; /* Intel blue border on hover */
+}
+
+/* Container for card content */
+.card-content {
+  padding: 0; /* No padding here since image goes to edge */
+  position: relative; /* Create positioning context for year overlay */
+}
+
+/* Year display (e.g., "1968") - On image for desktop */
+.card-year {
+  position: absolute; /* Position on top of image */
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 113, 197, 0.9); /* Semi-transparent Intel blue */
+  color: white;
+  font-size: 1rem; /* Smaller, modern size */
+  font-weight: 700;
+  padding: 8px 16px;
+  margin: 0;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px); /* Blur effect behind year */
+  border-left: 3px solid white; /* Modern accent line */
+}
+
+/* Milestone title (e.g., "Intel Founded") */
+.card-title {
+  font-size: 1.5rem;
+  color: #0071C5; /* Intel blue */
+  padding: 20px 20px 10px; /* Padding on top, sides, and a bit on bottom */
+  font-weight: 700; /* Bold for emphasis */
+  letter-spacing: -0.5px; /* Tight spacing for modern look */
+  margin: 0;
+}
+
+/* Card image */
+.card-image {
+  width: 100%; /* Image spans full width of card */
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Crops image to fill space without distortion */
+  display: block; /* Removes extra space below image */
+  position: relative; /* Create stacking context for year overlay */
+}
+
+/* Card description text */
+.card-description {
+  padding: 10px 20px 20px; /* Padding around the text */
+  color: #666; /* Medium gray for body text */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-height: 0; /* Start collapsed */
+  overflow: hidden; /* Hide when collapsed */
+  transition: max-height 0.4s ease, padding 0.4s ease; /* Smooth expand */
+}
+
+/* Show description when hovering over the card */
+.timeline-card:hover .card-description {
+  max-height: 300px; /* Expands to show text */
+  padding: 10px 20px 20px; /* Restore padding */
+}
+
+
+/* ===== TIMELINE HINT TEXT ===== */
+/* The scroll instruction message */
+.timeline-hint {
+  text-align: center;
+  color: #666; /* Subtle gray */
+  background: #ffffff; /* White background */
+  padding: 15px 20px; /* Smaller padding */
+  font-size: 0.9rem; /* Smaller text */
+  font-weight: 400; /* Normal weight */
+  font-style: italic; /* Italic for subtlety */
+}
+
+/* Show desktop hint, hide mobile hint by default */
+.mobile-hint {
+  display: none;
+}
+
+.desktop-hint {
+  display: inline;
+}
+
+
+/* ===== RESPONSIVE DESIGN: MOBILE ===== */
+/* When screen is 768px or smaller, adjust for mobile */
+@media (max-width: 768px) {
+  /* Reduce hero section padding on mobile */
+  .hero {
+    padding: 60px 20px;
+    min-height: 300px;
+  }
+  
+  /* Smaller logo on mobile */
+  .hero-logo {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+  
+  /* Smaller heading on mobile */
+  .hero-title {
+    font-size: 2rem; /* Smaller than desktop */
+  }
+  
+  /* Smaller subtitle on mobile */
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  /* VERTICAL timeline for mobile */
+  .timeline {
+    flex-direction: column; /* Stack cards vertically */
+    overflow-x: visible;
+    overflow-y: visible;
+    padding: 40px 20px; /* Even padding all around */
+    gap: 30px;
+    scroll-snap-type: none; /* Disable snap on mobile */
+  }
+  
+  /* Full width cards on mobile */
+  .timeline-card {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; /* Center the cards */
+  }
+  
+  /* Show descriptions by default on mobile (no hover on touch devices) */
+  .card-description {
+    max-height: none; /* No height restriction */
+    padding: 10px 20px 20px; /* Always show with padding */
+  }
+  
+  /* Year overlay repositioned for mobile */
+  .card-year {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  /* Adjust hint text for mobile */
+  .timeline-hint {
+    font-size: 0.85rem;
+    padding: 12px 15px;
+  }
+  
+  /* Swap hint text visibility */
+  .desktop-hint {
+    display: none;
+  }
+  
+  .mobile-hint {
+    display: inline;
+  }
+}
+
+
+/* ===== RESPONSIVE DESIGN: TABLET ===== */
+/* Adjustments for medium-sized screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .timeline-card {
+    flex: 0 0 300px; /* Slightly smaller cards on tablets */
+  }
+}
